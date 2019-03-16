@@ -23,30 +23,6 @@ class App extends Component {
       })
   }
 
-  clickCard = () => {
-    axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deck_id}/draw/?count=1`)
-      .then(res => {
-        const prevCard = this.state.card.value
-        res.data.cards.map(card => {
-          if (card.value === 0) { card.value = 10 }
-          if (card.value === 'ACE') { card.value = 11 }
-          if (card.value === 'JACK') { card.value = 12 }
-          if (card.value === 'QUEEN') { card.value = 13 }
-          if (card.value === 'KING') { card.value = 14 }
-          if (prevCard > card.value) {
-             this.setState({ result: 'win' })
-          } else (
-            this.setState({ result: 'lose' })
-          )
-          this.setState({ card: card })
-          console.log(card.value)
-        })
-      })
-      .catch(err => {
-        console.log(err);
-      })
-  }
-
   upHandler = () => {
     axios.get(`https://deckofcardsapi.com/api/deck/${this.state.deck_id}/draw/?count=1`)
       .then(res => {
