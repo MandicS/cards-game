@@ -34,9 +34,9 @@ class App extends Component {
           if (card.value === 'QUEEN') { card.value = 13 }
           if (card.value === 'KING') { card.value = 14 }
           if (prevCard > card.value) {
-            this.setState({result: 'win'})
+             this.setState({ result: 'win' })
           } else (
-            this.setState({result: 'lose'})
+            this.setState({ result: 'lose' })
           )
           this.setState({ card: card })
           console.log(card.value)
@@ -57,14 +57,14 @@ class App extends Component {
           if (card.value === 'JACK') { card.value = '12' }
           if (card.value === 'QUEEN') { card.value = '13' }
           if (card.value === 'KING') { card.value = '14' }
-          card.value = parseInt(card.value ,10)
+          card.value = parseInt(card.value, 10)
           if (prevCard < card.value) {
-            this.setState({result: 'win'})
+            this.setState({ result: 'win' })
           } else (
-            this.setState({result: 'lose'})
+            this.setState({ result: 'lose' })
           )
           this.setState({ card: card })
-          console.log(typeof(card.value), card.value, ' up')
+          console.log(typeof (card.value), card.value, ' up')
         })
       })
       .catch(err => {
@@ -82,14 +82,14 @@ class App extends Component {
           if (card.value === 'JACK') { card.value = '12' }
           if (card.value === 'QUEEN') { card.value = '13' }
           if (card.value === 'KING') { card.value = '14' }
-          card.value = parseInt(card.value ,10)
+          card.value = parseInt(card.value, 10)
           if (prevCard > card.value) {
-            this.setState({result: 'win'})
+            this.setState({ result: 'win' })
           } else (
-            this.setState({result: 'lose'})
+            this.setState({ result: 'lose' })
           )
           this.setState({ card: card })
-          console.log(typeof(card.value), card.value, ' down')
+          console.log(typeof (card.value), card.value, ' down')
         })
       })
       .catch(err => {
@@ -98,13 +98,23 @@ class App extends Component {
   }
 
   render() {
+    const resPlay = () => {
+      if(this.state.result === 'win') {
+        return <h1 className='win'>{this.state.result}</h1>
+      }
+      if(this.state.result === 'lose') {
+        return <h1 className='lose'>{this.state.result}</h1>
+      }
+    }
     return (
       <div className="App">
-        <img src={this.state.card.images.png} alt={this.state.card.value}></img>
-        <div>
-          <button onClick={this.upHandler}>Up</button>
-          <button onClick={this.downHandler}>Down</button>
-          <h1>{this.state.result}</h1>
+        <div className="play">
+        <div className='res'>{resPlay()}</div>
+          <img src={this.state.card.images.png} alt={this.state.card.value}></img>
+          <div>
+            <button onClick={this.upHandler} className="b1">Up</button>
+            <button onClick={this.downHandler} className="b2">Down</button>
+          </div>
         </div>
       </div>
     );
